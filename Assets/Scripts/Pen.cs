@@ -9,6 +9,7 @@ public class Pen : MonoBehaviour
     private List<GameObject> _checkPoints = new();
     [SerializeField] private GameObject _sphere;
     [SerializeField] private LayerMask _layerMask;
+    private Vector3 _pointBeforeLastPoint;
     private Vector3 _lastPoint;
     
     [SerializeField] private SplineContainer _splineContainer;
@@ -34,9 +35,15 @@ public class Pen : MonoBehaviour
         {
             if (TryHitPlane(out var position))
             {
-                if (Vector3.SqrMagnitude(_lastPoint - position) > 0.5f)
+                if (Vector3.SqrMagnitude(_lastPoint - position) is > 0.5f and < 3)
                 {
-                    AddSphere(position);
+                    var lastSegment = _lastPoint - _pointBeforeLastPoint;
+                    var nextSegment = position - _lastPoint;
+                    var angle = Vector3.Angle(lastSegment, nextSegment);
+                    if (angle < 90 || _pointBeforeLastPoint == Vector3.zero)
+                    {
+                        AddSphere(position);
+                    }
                 }
             }
         }
@@ -53,6 +60,7 @@ public class Pen : MonoBehaviour
     {
         var sphere = Instantiate(_sphere, position, Quaternion.identity);
         _checkPoints.Add(sphere);
+        _pointBeforeLastPoint = _lastPoint;
         _lastPoint = position;
     }
     
