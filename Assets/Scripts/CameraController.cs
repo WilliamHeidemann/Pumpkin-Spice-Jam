@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
         forward.y = 0;
         right.y = 0;
         
-        Vector3 moveDir = forward * vertical + right * horizontal;
+        Vector3 moveDir = forward * vertical * 1.3f + right * horizontal;
         transform.position += moveDir * _speed * Time.deltaTime;
 
     }
