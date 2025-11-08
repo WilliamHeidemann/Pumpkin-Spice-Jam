@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
+using UtilityToolkit.Runtime;
 
 public class Pen : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Pen : MonoBehaviour
     private Vector3 _pointBeforeLastPoint;
     private Vector3 _lastPoint;
 
-    private TrackBuilder.SplineConnection _splineConnection;
+    private Option<TrackBuilder.SplineConnection> _splineConnection;
 
     private float _lastTimePlaced;
 
@@ -33,37 +34,48 @@ public class Pen : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            _splineConnection = Option<TrackBuilder.SplineConnection>.None;
+        }
+        
         if (!TryHitPlane(out var mousePoint))
             return;
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (_trackBuilder.GetSplineConnection(mousePoint, _maxDistanceToExistingTrack)
-                .IsSome(out var splineConnection))
+            if (_splineConnection.IsSome(out var splineConnection))
             {
-                _splineConnection = splineConnection;
+                if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+                    .IsSome(out var nearestConnection))
+                {
+                    splineConnection.SetLastPoint(nearestConnection.Point);
+                }
+                // _splineConnection = Option<TrackBuilder.SplineConnection>.None;
             }
-            else
+            // else
             {
-                _splineConnection = _trackBuilder.New(mousePoint);
-            }
+                if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+                    .IsSome(out var nearestConnection))
+                {
+                    _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearestConnection);
+                }
+                else
+                {
+                    _splineConnection =  Option<TrackBuilder.SplineConnection>.Some(_trackBuilder.New(mousePoint));
+                }
             
-            _splineConnection.Add(mousePoint);
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            _splineConnection.SetLastPoint(mousePoint);
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (_trackBuilder.GetSplineConnection(mousePoint, _maxDistanceToExistingTrack).IsSome(out var endConnection))
-            {
-                _splineConnection.SetLastPoint(endConnection.Point);
+                if (_splineConnection.IsSome(out var connection))
+                {
+                    connection.Add(mousePoint);
+                }
             }
         }
-        
+
+        if (_splineConnection.IsSome(out var current))
+        { 
+            current.SetLastPoint(mousePoint);
+        }
         
         _splineInstantiate.UpdateInstances();
     }

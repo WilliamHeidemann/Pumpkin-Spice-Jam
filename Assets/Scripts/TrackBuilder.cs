@@ -43,7 +43,7 @@ public class TrackBuilder
         };
     }
 
-    public Option<SplineConnection> GetSplineConnection(float3 queryPoint, float maxDistance)
+    public Option<SplineConnection> GetNearestSplineConnection(float3 queryPoint, float maxDistance)
     {
         var splines = _splineContainer.Splines.Where(spline => spline.Count != 0);
         foreach (Spline spline in splines)
