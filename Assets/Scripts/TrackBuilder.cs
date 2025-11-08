@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;using System.Xml.Linq;
+using System.Linq;
+using System.Xml.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -21,13 +22,22 @@ public class TrackBuilder
         public Spline Spline;
         public Vector3 Point;
         public bool PrependKnots;
+
+        public void Add(float3 point)
+        {
+            if (PrependKnots) Spline.Insert(0, point);
+            else Spline.Add(point);
+        }
     }
 
-    public SplineConnection Build(Vector3 startingPoint)
+    public SplineConnection New(Vector3 startingPoint)
     {
+        var spline = _splineContainer.AddSpline();
+        spline.Add(startingPoint);
+
         return new SplineConnection
         {
-            Spline = _splineContainer.AddSpline(),
+            Spline = spline,
             Point = startingPoint,
             PrependKnots = false
         };
@@ -58,7 +68,7 @@ public class TrackBuilder
                 });
             }
         }
-        
+
         return Option<SplineConnection>.None;
     }
 
@@ -80,14 +90,27 @@ public class TrackBuilder
         spline.InsertRange(index, points.Select(point => (float3)point));
         _splineInstantiate.UpdateInstances();
     }
+
+    public void Join(Spline spline1, Spline spline2)
+    {
+    }
 }
 
 public static class Extensions
 {
-    public static void SetLastPoint(this Spline spline, float3 position)
+    public static void SetLastPoint(this TrackBuilder.SplineConnection splineConnection, float3 position)
     {
-        BezierKnot old = spline[^1];
-        BezierKnot replacement = new(position, old.TangentIn, old.TangentOut, old.Rotation);
-        spline[^1] = replacement;
+        if (splineConnection.PrependKnots)
+        {
+            BezierKnot old = splineConnection.Spline[0];
+            BezierKnot replacement = new(position, old.TangentIn, old.TangentOut, old.Rotation);
+            splineConnection.Spline[0] = replacement;
+        }
+        else
+        {
+            BezierKnot old = splineConnection.Spline[^1];
+            BezierKnot replacement = new(position, old.TangentIn, old.TangentOut, old.Rotation);
+            splineConnection.Spline[^1] = replacement;
+        }
     }
 }

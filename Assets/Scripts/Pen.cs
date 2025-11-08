@@ -41,34 +41,31 @@ public class Pen : MonoBehaviour
             if (_trackBuilder.GetSplineConnection(mousePoint, _maxDistanceToExistingTrack)
                 .IsSome(out var splineConnection))
             {
-                // assert that we want to start building from connection point
                 _splineConnection = splineConnection;
             }
             else
             {
-                _splineConnection = _trackBuilder.Build(mousePoint);
-                // start a new spline and assert that we want to start building from the new spline
+                _splineConnection = _trackBuilder.New(mousePoint);
             }
             
-            // create the next point to be modified each frame
-            _splineConnection.Spline.SetLastPoint(mousePoint);
+            _splineConnection.Add(mousePoint);
         }
 
         if (Input.GetMouseButton(0))
         {
-            // put the last point where mousepoint is
-            _splineConnection.Spline.SetLastPoint(mousePoint);
+            _splineConnection.SetLastPoint(mousePoint);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (_trackBuilder.GetSplineConnection(mousePoint, _maxDistanceToExistingTrack).IsSome(out var connection))
+            if (_trackBuilder.GetSplineConnection(mousePoint, _maxDistanceToExistingTrack).IsSome(out var endConnection))
             {
-                _splineConnection.Spline.SetLastPoint(connection.Point);
+                _splineConnection.SetLastPoint(endConnection.Point);
             }
-            // check if the point should snap to a nearby connection point
-            // or if it should end in the open
         }
+        
+        
+        _splineInstantiate.UpdateInstances();
     }
 
     public bool TryHitPlane(out Vector3 position)
