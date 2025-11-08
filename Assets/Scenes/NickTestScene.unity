@@ -680,11 +680,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7267a64db3fe84e459c674003c3d0f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _sphere: {fileID: 7736303728965574769, guid: a73891e67f65e85488da66ce44bc36ba, type: 3}
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
+  _maxCurveAngle: 0
+  _maxDistanceToExistingTrack: 0
   _splineContainer: {fileID: 687764929}
+  _splineInstantiate: {fileID: 687764931}
 --- !u!1 &1119961463
 GameObject:
   m_ObjectHideFlags: 0
