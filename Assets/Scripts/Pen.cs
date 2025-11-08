@@ -50,25 +50,28 @@ public class Pen : MonoBehaviour
                     .IsSome(out var nearestConnection))
                 {
                     splineConnection.SetLastPoint(nearestConnection.Point);
+
+                    // if (splineConnection.Spline == nearestConnection.Spline)
+                    // {
+                    //     splineConnection.Spline.Closed = true;
+                    //     return;
+                    // }
                 }
-                // _splineConnection = Option<TrackBuilder.SplineConnection>.None;
             }
-            // else
-            {
-                if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
-                    .IsSome(out var nearestConnection))
-                {
-                    _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearestConnection);
-                }
-                else
-                {
-                    _splineConnection =  Option<TrackBuilder.SplineConnection>.Some(_trackBuilder.New(mousePoint));
-                }
             
-                if (_splineConnection.IsSome(out var connection))
-                {
-                    connection.Add(mousePoint);
-                }
+            if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+                .IsSome(out var nearToStartFrom))
+            {
+                _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearToStartFrom);
+            }
+            else
+            {
+                _splineConnection =  Option<TrackBuilder.SplineConnection>.Some(_trackBuilder.New(mousePoint));
+            }
+        
+            if (_splineConnection.IsSome(out var connection))
+            {
+                connection.Add(mousePoint);
             }
         }
 

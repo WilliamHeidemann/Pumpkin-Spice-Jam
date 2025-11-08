@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -368,6 +369,20 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3bc4d5be55547efa79f3cedaff9aaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  _camera: {fileID: 330585546}
+  _speed: 30
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1119961464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -912,6 +927,78 @@ MonoBehaviour:
       m_Data: []
     m_ObjectData:
       m_Data: []
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: -12.471519
+        y: 0.00000023841858
+        z: -2.5675435
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.6260388
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.6260388
+      Rotation:
+        value:
+          x: 0.000000034956134
+          y: 0.888468
+          z: -0.00000006767226
+          w: 0.4589386
+    - Position:
+        x: -7.366145
+        y: -0.00000071525574
+        z: -6.1907477
+      TangentIn:
+        x: -0
+        y: -0
+        z: -1.9978182
+      TangentOut:
+        x: 0
+        y: 0
+        z: 1.8855225
+      Rotation:
+        value:
+          x: 0.000000020210942
+          y: 0.84674877
+          z: -0.000000032922898
+          w: 0.531993
+    - Position:
+        x: -2.007835
+        y: -0.00000071525574
+        z: -7.734957
+      TangentIn:
+        x: -0
+        y: -0
+        z: -0.5576385
+      TangentOut:
+        x: 0
+        y: 0
+        z: 0.5576385
+      Rotation:
+        value:
+          x: 8.524173e-19
+          y: 0.7990368
+          z: 6.4145153e-19
+          w: 0.60128224
+    m_MetaData:
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    - Mode: 0
+      Tension: 0.5
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
   m_Knots:
     m_KnotsLink: []
 --- !u!4 &1119961466
@@ -947,11 +1034,11 @@ PrefabInstance:
       objectReference: {fileID: 1119961465}
     - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_Duration
-      value: 14.300812
+      value: 22.205948
       objectReference: {fileID: 0}
     - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LoopMode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_MaxSpeed
