@@ -185,7 +185,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 00c96246c4f62ec499ec4999ee67de67, type: 2}
+  - {fileID: 2100000, guid: d597457b6b5251348bad634923a66fbd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -699,11 +699,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7267a64db3fe84e459c674003c3d0f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _sphere: {fileID: 7736303728965574769, guid: a73891e67f65e85488da66ce44bc36ba, type: 3}
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
+  _maxCurveAngle: 40
+  _maxDistanceToExistingTrack: 3
   _splineContainer: {fileID: 687764929}
+  _splineInstantiate: {fileID: 687764931}
 --- !u!1 &1119961463
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +718,7 @@ GameObject:
   - component: {fileID: 1119961465}
   - component: {fileID: 1119961464}
   m_Layer: 0
-  m_Name: Tracks (1)
+  m_Name: Test Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,18 +944,30 @@ PrefabInstance:
     - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_Target
       value: 
-      objectReference: {fileID: 687764929}
+      objectReference: {fileID: 1119961465}
     - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_Duration
-      value: 8.735551
+      value: 14.300812
+      objectReference: {fileID: 0}
+    - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
+      propertyPath: m_LoopMode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_MaxSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
+      propertyPath: m_EasingMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5963991479268387768, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
+      propertyPath: m_StartOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.39
+      value: 4.91
       objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -961,23 +975,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.22
+      value: -1.0999999
       objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9971644
+      value: 0.9363755
       objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0000000044921076
+      value: -0.000000010398584
       objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.075254135
+      value: 0.35099995
       objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000005952323
+      value: -0.000000027740684
       objectReference: {fileID: 0}
     - target: {fileID: 1176010360820632283, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -997,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5007496443901997310, guid: 8f35c431f2268364b9e7b193494f552a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

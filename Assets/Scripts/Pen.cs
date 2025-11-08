@@ -1,76 +1,83 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
+using UtilityToolkit.Runtime;
 
 public class Pen : MonoBehaviour
 {
     private Camera _mainCamera;
-    private List<GameObject> _checkPoints = new();
-    [SerializeField] private GameObject _sphere;
     [SerializeField] private LayerMask _layerMask;
     private Vector3 _pointBeforeLastPoint;
     private Vector3 _lastPoint;
-    
+
+    private Option<TrackBuilder.SplineConnection> _splineConnection;
+
+    private float _lastTimePlaced;
+
+    [SerializeField] private float _maxCurveAngle;
+    [SerializeField] private float _maxDistanceToExistingTrack;
+
+
     [SerializeField] private SplineContainer _splineContainer;
+    [SerializeField] private SplineInstantiate _splineInstantiate;
     private TrackBuilder _trackBuilder;
-    
+
     void Start()
     {
         _mainCamera = Camera.main;
         _trackBuilder = new TrackBuilder(_splineContainer);
     }
-    
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
-            if (TryHitPlane(out var position))
-            {
-                AddSphere(position);
-            }
+            _splineConnection = Option<TrackBuilder.SplineConnection>.None;
         }
         
-        if (Input.GetMouseButton(0))
+        if (!TryHitPlane(out var mousePoint))
+            return;
+
+        if (Input.GetMouseButtonDown(0))
         {
-            if (TryHitPlane(out var position))
+            if (_splineConnection.IsSome(out var splineConnection))
             {
-                if (Vector3.SqrMagnitude(_lastPoint - position) is > 0.5f and < 3)
+                if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+                    .IsSome(out var nearestConnection))
                 {
-                    var lastSegment = _lastPoint - _pointBeforeLastPoint;
-                    var nextSegment = position - _lastPoint;
-                    var angle = Vector3.Angle(lastSegment, nextSegment);
-                    if (angle < 90 || _pointBeforeLastPoint == Vector3.zero)
-                    {
-                        AddSphere(position);
-                    }
+                    splineConnection.SetLastPoint(nearestConnection.Point);
+                }
+                // _splineConnection = Option<TrackBuilder.SplineConnection>.None;
+            }
+            // else
+            {
+                if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+                    .IsSome(out var nearestConnection))
+                {
+                    _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearestConnection);
+                }
+                else
+                {
+                    _splineConnection =  Option<TrackBuilder.SplineConnection>.Some(_trackBuilder.New(mousePoint));
+                }
+            
+                if (_splineConnection.IsSome(out var connection))
+                {
+                    connection.Add(mousePoint);
                 }
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            var points = _checkPoints.Select(sphere => sphere.transform.position);
-            _trackBuilder.BuildTrack(points);
-            Clear();
+        if (_splineConnection.IsSome(out var current))
+        { 
+            current.SetLastPoint(mousePoint);
         }
-    }
-
-    private void AddSphere(Vector3 position)
-    {
-        var sphere = Instantiate(_sphere, position, Quaternion.identity);
-        _checkPoints.Add(sphere);
-        _pointBeforeLastPoint = _lastPoint;
-        _lastPoint = position;
-    }
-    
-    private void Clear()
-    {
-        foreach (var point in _checkPoints)
-        {
-            Destroy(point);
-        }
-        _checkPoints.Clear();
+        
+        _splineInstantiate.UpdateInstances();
     }
 
     public bool TryHitPlane(out Vector3 position)
