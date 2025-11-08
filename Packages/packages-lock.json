@@ -213,6 +213,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.williamheidemann.utilitytoolkit": {
+      "version": "https://github.com/WilliamHeidemann/UtilityToolkit.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3844d7b452af175f73754779086e6001b5353699"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
