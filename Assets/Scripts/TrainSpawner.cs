@@ -17,6 +17,8 @@ public class TrainSpawner : MonoBehaviour
         while (true)
         {
             await Awaitable.WaitForSecondsAsync(10f);
+            if (_splineContainer.Splines.Count == 0)
+                continue;
             SpawnTrain(_splineContainer);
         }
     }
