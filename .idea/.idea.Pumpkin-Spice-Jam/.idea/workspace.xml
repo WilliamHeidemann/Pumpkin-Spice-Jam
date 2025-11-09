@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="05f90ac2-965b-497e-b703-ae5b29267318" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pumpkin-Spice-Jam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pumpkin-Spice-Jam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Environment/smoke.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Environment/smoke.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Train_1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Train_1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Vehicles/train.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Vehicles/train.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Game Audio.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Game Audio.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunInfo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunInfo.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunSettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/PerformanceTestRunSettings.json.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/NickTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NickTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NickTestScene/Tilt Shift Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NickTestScene/Tilt Shift Profile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MaterialFader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MaterialFader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/smokeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/smokeController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +37,8 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "smoke",
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }

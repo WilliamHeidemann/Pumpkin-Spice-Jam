@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DistanceTool
   _object1: {fileID: 330585546}
-  _object2: {fileID: 1259680107}
+  _object2: {fileID: 1226958614}
 --- !u!114 &330585550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,8 +829,8 @@ MonoBehaviour:
   <ReferencePlane>k__BackingField: {fileID: 787080076}
   <AutoFocus>k__BackingField: 0
   <FocusDistance>k__BackingField: 164.8
-  <BokehStrength>k__BackingField: 1.62
-  <MaxBlurRadius>k__BackingField: 0.18
+  <BokehStrength>k__BackingField: 3.46
+  <MaxBlurRadius>k__BackingField: 0.61
   <BoundaryFade>k__BackingField: 0
   <DownsampleMode>k__BackingField: 0
   <BokehMode>k__BackingField: 1
@@ -2165,10 +2165,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Train_1
       objectReference: {fileID: 0}
-    - target: {fileID: 1428984594488866773, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0.82
-      objectReference: {fileID: 0}
     - target: {fileID: 4971549751047253959, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
       propertyPath: m_LocalPosition.x
       value: 88.73466
@@ -2208,10 +2204,6 @@ PrefabInstance:
     - target: {fileID: 4971549751047253959, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6788436043101774841, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
-      propertyPath: emissionRate
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7203349085999848680, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
       propertyPath: m_Target
@@ -3443,6 +3435,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 701682545454953724, guid: 26531aec1040e9a4eb6a4b0189204b9f, type: 3}
   m_PrefabInstance: {fileID: 1224101180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1226958614 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4971549751047253959, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
+  m_PrefabInstance: {fileID: 771579573}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1235363462 stripped
 Transform:
