@@ -81,9 +81,8 @@ public class Pen : MonoBehaviour
         if (_splineConnection.IsSome(out var current))
         { 
             current.SetLastPoint(mousePoint);
+            _splineInstantiate.UpdateInstances();
         }
-
-        _splineInstantiate.UpdateInstances();
     }
 
     public bool TryHitPlane(out Vector3 position)
