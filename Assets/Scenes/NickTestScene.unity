@@ -583,6 +583,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b51e1dda82f41594bad822d658942833, type: 3}
+--- !u!1001 &283744281
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 233.64757
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 155.11182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 195.44502
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761176251583928118, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4052152914116900997, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+      propertyPath: m_Name
+      value: Game Audio
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
 --- !u!4 &329487774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 194466009443450075, guid: fd2a35f4603b5bd45b6b41ecba1f8f83, type: 3}
@@ -2108,6 +2165,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Train_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1428984594488866773, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.82
+      objectReference: {fileID: 0}
     - target: {fileID: 4971549751047253959, guid: 4d03d811b66fe4bb28b8c16cf0cbf201, type: 3}
       propertyPath: m_LocalPosition.x
       value: 88.73466
@@ -2978,6 +3039,7 @@ MonoBehaviour:
   _maxDistanceToExistingTrack: 3
   _splineContainer: {fileID: 687764929}
   _splineInstantiate: {fileID: 687764931}
+  _gameAudio: {fileID: 1245992649}
 --- !u!1 &1119961463
 GameObject:
   m_ObjectHideFlags: 0
@@ -3392,6 +3454,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 793803063694130319, guid: dd0c71ca12134fa49b907051f9fc97c6, type: 3}
   m_PrefabInstance: {fileID: 1865862192}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1245992649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4368017657014014892, guid: 1ea1e0473c8c3e644868c26a95d334e8, type: 3}
+  m_PrefabInstance: {fileID: 283744281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 279298a57ed84af88ce21270f2c66cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameAudio
 --- !u!1001 &1252505277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5494,6 +5567,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 687764930}
+  - {fileID: 283744281}
   - {fileID: 719234895}
   - {fileID: 1119961466}
   - {fileID: 771579573}
