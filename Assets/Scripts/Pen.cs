@@ -21,6 +21,8 @@ public class Pen : MonoBehaviour
     [SerializeField] private SplineInstantiate _splineInstantiate;
     private TrackBuilder _trackBuilder;
 
+    [SerializeField] private GameAudio _gameAudio;
+    
     void Start()
     {
         _mainCamera = Camera.main;
@@ -48,7 +50,9 @@ public class Pen : MonoBehaviour
             var isNearOtherSplineEnd = _trackBuilder
                 .GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
                 .IsSome(out var nearestConnection);
-
+            
+            _gameAudio.PlayBuildingSound();
+            
             switch (isBuilding, isNearOtherSplineEnd)
             {
                 case (true, true):
