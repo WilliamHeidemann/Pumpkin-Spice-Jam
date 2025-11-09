@@ -6,7 +6,8 @@ public class TrainSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _train;
     [SerializeField] private SplineContainer _splineContainer;
-
+    [SerializeField] private float _timeBetweenSpawnsInSeconds = 30f;
+    
     private void Start()
     {
         SpawnTrains();
@@ -16,7 +17,7 @@ public class TrainSpawner : MonoBehaviour
     {
         while (true)
         {
-            await Awaitable.WaitForSecondsAsync(10f);
+            await Awaitable.WaitForSecondsAsync(_timeBetweenSpawnsInSeconds);
             if (_splineContainer.Splines.Count == 0)
                 continue;
             SpawnTrain(_splineContainer);

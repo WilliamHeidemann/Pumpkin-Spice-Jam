@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 using UtilityToolkit.Runtime;
@@ -63,22 +58,22 @@ public class Pen : MonoBehaviour
                     // put spline on new spline container
                     
                     // spawn a train for the new spline container
-                    print("Closed spline");
+                    // print("Closed spline");
                     break;
                 case (true, false):
                     currentConnection.Add(mousePoint);
-                    print("Added point to current spline");
+                    // print("Added point to current spline");
                     break;
                 case (false, true):
                     _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearestConnection);
                     nearestConnection.Add(mousePoint);
-                    print("Started new spline from existing spline end");
+                    // print("Started new spline from existing spline end");
                     break;
                 case (false, false):
                     var newConnection = _trackBuilder.New(mousePoint);
                     _splineConnection = Option<TrackBuilder.SplineConnection>.Some(newConnection);
                     newConnection.Add(mousePoint);
-                    print("Started new spline at mouse point");
+                    // print("Started new spline at mouse point");
                     break;
             }
         }
