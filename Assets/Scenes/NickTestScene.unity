@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SmokeEmitter
   smoke: {fileID: 220701211303955240, guid: 2cb2e429d3374b1458a6977a55a133f7, type: 3}
   emissionPoint: {fileID: 649737594}
-  emissionRate: 0
+  emissionRate: 0.5
 --- !u!1001 &973397261
 PrefabInstance:
   m_ObjectHideFlags: 0
