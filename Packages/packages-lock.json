@@ -230,6 +230,15 @@
       "dependencies": {},
       "hash": "3844d7b452af175f73754779086e6001b5353699"
     },
+    "jp.keijiro.minibokeh": {
+      "version": "1.2.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "17.0.0"
+      },
+      "url": "https://registry.npmjs.com"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,

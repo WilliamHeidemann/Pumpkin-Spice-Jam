@@ -21,9 +21,9 @@ public class FadeObject : MonoBehaviour
         color.a = alpha;
         _material.color = color;
         
-        if (_fadeTimer >= fadeDuration)
-        {
-            gameObject.SetActive(false); // Or Destroy(gameObject);
-        }
+        // if (_fadeTimer >= fadeDuration)
+        // {
+        //     gameObject.SetActive(false); // Or Destroy(gameObject);
+        // }
     }
 }
