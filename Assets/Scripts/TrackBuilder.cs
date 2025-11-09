@@ -47,7 +47,7 @@ public class TrackBuilder
     {
         var splines = _splineContainer.Splines.Where(spline => spline.Count != 0);
         foreach (Spline spline in splines)
-        {// distance to query point may not be 0
+        {
             var distanceToFirst = math.distancesq(spline[0].Position, queryPoint);
             var distanceToLast = math.distancesq(spline[^1].Position, queryPoint);
             
@@ -93,10 +93,6 @@ public class TrackBuilder
         spline.InsertRange(index, points.Select(point => (float3)point));
         _splineInstantiate.UpdateInstances();
     }
-
-    public void Join(Spline spline1, Spline spline2)
-    {
-    }
 }
 
 public static class Extensions
@@ -114,6 +110,26 @@ public static class Extensions
             BezierKnot old = splineConnection.Spline[^1];
             BezierKnot replacement = new(position, old.TangentIn, old.TangentOut, old.Rotation);
             splineConnection.Spline[^1] = replacement;
+        }
+    }
+    
+    public static void Join(this TrackBuilder.SplineConnection splineConnection, TrackBuilder.SplineConnection other)
+    {
+        if (splineConnection.Spline == other.Spline)
+            return;
+        
+        if (splineConnection.PrependKnots)
+        {
+            var pointsToAdd = other.Spline.Knots.Select(knot => (float3)knot.Position).Reverse().ToList();
+            splineConnection.Spline.InsertRange(0, pointsToAdd);
+        }
+        else
+        {
+            var pointsToAdd = other.Spline.Knots.Select(knot => (float3)knot.Position).ToList();
+            foreach (float3 point in pointsToAdd)
+            {
+                splineConnection.Spline.Add(point);
+            }
         }
     }
 }
