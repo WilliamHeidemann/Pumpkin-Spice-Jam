@@ -1,12 +1,12 @@
 using UnityEngine;
-using UtilityToolkit.Editor;
+// using UtilityToolkit.Editor;
 
 public class DistanceTool : MonoBehaviour
 {
     [SerializeField] private Transform _object1;
     [SerializeField] private Transform _object2;
 
-    [Button]
+    // [Button]
     public void MeasureDistance()
     {
         if (_object1 == null || _object2 == null)
