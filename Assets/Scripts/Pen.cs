@@ -37,6 +37,11 @@ public class Pen : MonoBehaviour
         if (!TryHitPlane(out var mousePoint))
             return;
 
+        if (_splineConnection.IsSome(out var current))
+        { 
+            current.SetLastPoint(mousePoint);
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             var isBuilding = _splineConnection.IsSome(out var currentConnection);
@@ -78,11 +83,7 @@ public class Pen : MonoBehaviour
             }
         }
         
-        if (_splineConnection.IsSome(out var current))
-        { 
-            current.SetLastPoint(mousePoint);
-            _splineInstantiate.UpdateInstances();
-        }
+        _splineInstantiate.UpdateInstances();
     }
 
     public bool TryHitPlane(out Vector3 position)
