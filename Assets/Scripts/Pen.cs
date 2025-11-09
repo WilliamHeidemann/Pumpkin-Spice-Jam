@@ -44,42 +44,77 @@ public class Pen : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (_splineConnection.IsSome(out var splineConnection))
-            {
-                if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
-                    .IsSome(out var nearestConnection))
-                {
-                    splineConnection.SetLastPoint(nearestConnection.Point);
+            var isBuilding = _splineConnection.IsSome(out var currentConnection);
+            var isNearOtherSplineEnd = _trackBuilder
+                .GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+                .IsSome(out var nearestConnection);
 
-                    // if (splineConnection.Spline == nearestConnection.Spline)
-                    // {
-                    //     splineConnection.Spline.Closed = true;
-                    //     return;
-                    // }
-                }
-            }
-            
-            if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
-                .IsSome(out var nearToStartFrom))
+            switch (isBuilding, isNearOtherSplineEnd)
             {
-                _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearToStartFrom);
+                case (true, true):
+                    // Finish current spline by connecting to nearest spline end
+                    currentConnection.SetLastPoint(nearestConnection.Point);
+                    _splineConnection = Option<TrackBuilder.SplineConnection>.None;
+                    print("Closed spline");
+                    break;
+                case (true, false):
+                    // Add point to current spline
+                    currentConnection.Add(mousePoint);
+                    print("Added point to current spline");
+                    break;
+                case (false, true):
+                    // Start new spline from nearest spline end
+                    _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearestConnection);
+                    nearestConnection.Add(mousePoint);
+                    print("Started new spline from existing spline end");
+                    break;
+                case (false, false):
+                    // Start new spline at mouse point
+                    var newConnection = _trackBuilder.New(mousePoint);
+                    _splineConnection = Option<TrackBuilder.SplineConnection>.Some(newConnection);
+                    newConnection.Add(mousePoint);
+                    print("Started new spline at mouse point");
+                    break;
             }
-            else
-            {
-                _splineConnection =  Option<TrackBuilder.SplineConnection>.Some(_trackBuilder.New(mousePoint));
-            }
-        
-            if (_splineConnection.IsSome(out var connection))
-            {
-                connection.Add(mousePoint);
-            }
+                
+
+            //     if (_splineConnection.IsSome(out var splineConnection))
+            //     {
+            //         if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+            //             .IsSome(out var nearestConnection))
+            //         {
+            //             splineConnection.SetLastPoint(nearestConnection.Point);
+            //
+            //             // if (splineConnection.Spline == nearestConnection.Spline)
+            //             // {
+            //             //     splineConnection.Spline.Closed = true;
+            //             //     return;
+            //             // }
+            //         }
+            //     } 
+            //
+            //     if (_trackBuilder.GetNearestSplineConnection(mousePoint, _maxDistanceToExistingTrack)
+            //           .IsSome(out var nearToStartFrom))
+            //     {
+            //         _splineConnection = Option<TrackBuilder.SplineConnection>.Some(nearToStartFrom);
+            //     }
+            //     else
+            //     {
+            //         _splineConnection =  Option<TrackBuilder.SplineConnection>.Some(_trackBuilder.New(mousePoint));
+            //     }
+            //
+            //     if (_splineConnection.IsSome(out var connection))
+            //     {
+            //         connection.Add(mousePoint);
+            //     }
+            // }
+            //
         }
-
         if (_splineConnection.IsSome(out var current))
         { 
             current.SetLastPoint(mousePoint);
         }
-        
+
         _splineInstantiate.UpdateInstances();
     }
 

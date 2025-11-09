@@ -47,8 +47,11 @@ public class TrackBuilder
     {
         var splines = _splineContainer.Splines.Where(spline => spline.Count != 0);
         foreach (Spline spline in splines)
-        {
-            if (math.distancesq(spline[0].Position, queryPoint) < maxDistance)
+        {// distance to query point may not be 0
+            var distanceToFirst = math.distancesq(spline[0].Position, queryPoint);
+            var distanceToLast = math.distancesq(spline[^1].Position, queryPoint);
+            
+            if (distanceToFirst < maxDistance && distanceToFirst != 0f)
             {
                 return Option<SplineConnection>.Some(new SplineConnection
                 {
@@ -58,7 +61,7 @@ public class TrackBuilder
                 });
             }
 
-            if (math.distancesq(spline[^1].Position, queryPoint) < maxDistance)
+            if (distanceToLast < maxDistance && distanceToLast != 0f)
             {
                 return Option<SplineConnection>.Some(new SplineConnection
                 {
